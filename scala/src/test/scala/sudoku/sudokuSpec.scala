@@ -9,17 +9,17 @@ class sudokuSpec extends BaseSpec {
     /*
         Game Board:
 
-        1 | 2 | 3   ? | N | N   N | N | N
-        4 | 5 | 6   1 | 2 | 3   N | N | N
-        7 | 8 | 9   N | N | N   N | N | N
+        1  2  3   N  N  N   N  N  N
+        4  5  6   1  2  3   N  N  N
+        7  8  9   N  N  N   N  N  N
 
-        N | N | N   N | N | N   N | N | N
-        N | N | N   N | N | N   N | N | N
-        N | N | N   N | N | N   N | N | N
+        N  N  N   N  N  N   N  N  N
+        N  N  N   N  N  N   N  N  N
+        N  N  N   N  N  N   N  N  N
 
-        N | N | N   N | N | N   N | N | N
-        N | N | N   N | N | N   N | N | N
-        N | N | N   N | N | N   N | N | N
+        N  N  N   N  N  N   N  N  N
+        N  N  N   N  N  N   N  N  N
+        N  N  N   N  N  N   N  N  N
 
      */
 
@@ -48,10 +48,23 @@ class sudokuSpec extends BaseSpec {
       board.col(9) mustEqual Set.empty
     }
 
+    "return the sub board location" in {
+      board.whichSubBoard(4, 1) mustEqual (2, 1)
+      board.whichSubBoard(2, 3) mustEqual (1, 1)
+      board.whichSubBoard(5, 5) mustEqual (2, 2)
+    }
+
+    "return the sub board set" in {
+      board.subBoardAt(4, 1) mustEqual Set(1, 2, 3)
+      board.subBoardAt(3, 3) mustEqual Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
+      board.subBoardAt(9, 9) mustEqual Set.empty
+    }
+
     "return the possibilities based on the input data" in {
       board.possibilitiesAt(4, 1) mustEqual Set(4, 5, 6, 7, 8, 9)
+      board.possibilitiesAt(3, 3) mustEqual Set.empty
+      board.possibilitiesAt(9, 9) mustEqual Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
     }
 
   }
-
 }
