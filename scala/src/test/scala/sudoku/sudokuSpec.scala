@@ -84,7 +84,7 @@ class sudokuSpec extends BaseSpec {
 
     "return the possibilities based on the input data" in {
       board.possibilitiesAt(4, 1) mustEqual Set(4, 5, 6, 7, 8, 9)
-      board.possibilitiesAt(3, 3) mustEqual Set.empty
+      board.possibilitiesAt(3, 3) mustEqual Set(9)
       board.possibilitiesAt(9, 9) mustEqual Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
 
       board2.possibilitiesAt(5, 1) mustEqual Set(1, 5, 9)

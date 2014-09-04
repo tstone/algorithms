@@ -1,5 +1,6 @@
 package algorithms
 
+
 package object sudoku {
 
   // outer sequence = rows, inner sequence = cols
@@ -27,14 +28,17 @@ package object sudoku {
     def whichSubBoard(x: Int, y: Int): (Int, Int) =
       (Math.floor((x - 1) / 3).toInt + 1, Math.floor((y - 1) / 3).toInt + 1)
 
-    def possibilitiesAt(x: Int, y: Int): Set[Int] =
-      Set(1, 2, 3, 4, 5, 6, 7, 8, 9).diff(
-        union(
-          board.row(y),
-          board.col(x),
-          board.subBoardAt(x, y)
+    def possibilitiesAt(x: Int, y: Int): Set[Int] = board(y - 1)(x - 1) match {
+      case Some(value)  => Set(value)
+      case None         =>
+        Set (1, 2, 3, 4, 5, 6, 7, 8, 9).diff (
+          union (
+            board.row(y),
+            board.col(x),
+            board.subBoardAt(x, y)
+          )
         )
-      )
+    }
   }
 
   private def union[A](sets: Set[A]*) =
