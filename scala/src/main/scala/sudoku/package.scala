@@ -28,10 +28,16 @@ package object sudoku {
       (Math.floor((x - 1) / 3).toInt + 1, Math.floor((y - 1) / 3).toInt + 1)
 
     def possibilitiesAt(x: Int, y: Int): Set[Int] =
-      Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
-        .diff(board.row(y))
-        .diff(board.col(x))
-        .diff(board.subBoardAt(x, y))
+      Set(1, 2, 3, 4, 5, 6, 7, 8, 9).diff(
+        union(
+          board.row(y),
+          board.col(x),
+          board.subBoardAt(x, y)
+        )
+      )
   }
+
+  private def union[A](sets: Set[A]*) =
+    sets.foldLeft(Set[A]()) { case (acc, set) => acc.union(set) }
 
 }
