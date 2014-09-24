@@ -8,5 +8,5 @@ To run algorithms:
 
 ```
 $ cd scala
-$ sb test
+$ sbt test
 ```

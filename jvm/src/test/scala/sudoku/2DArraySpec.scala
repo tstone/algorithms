@@ -1,8 +1,10 @@
 package algorithms.sudoku
 
 import test.support.BaseSpec
+import Sudoku2DArray._
 
-class sudokuSpec extends BaseSpec {
+
+class Sudoku2DArraySpec extends BaseSpec {
 
   "GameBoard" should {
 
@@ -64,17 +66,18 @@ class sudokuSpec extends BaseSpec {
     )
 
     "return the row set" in {
-      board.row(1) mustEqual Set(1, 2, 3)
-      board.row(2) mustEqual Set(1, 2, 3, 4, 5, 6)
+      val r = time("2D Array row") { () => board2.row(6) }
+      r mustEqual Set(1, 2, 3, 4, 8)
+
       board.row(9) mustEqual Set.empty
-
       board2.row(9) mustEqual Set(2, 3, 5, 9)
-
       solved.row(6) mustEqual Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
     }
 
     "return the column set" in {
-      board.col(4) mustEqual Set(1)
+      val r = time("2D Array col") { () => board.col(4) }
+      r mustEqual Set(1)
+
       board.col(1) mustEqual Set(1, 4, 7)
       board.col(9) mustEqual Set.empty
 
@@ -90,7 +93,9 @@ class sudokuSpec extends BaseSpec {
     }
 
     "return the sub board set" in {
-      board.subBoardAt(4, 1) mustEqual Set(1, 2, 3)
+      val r = time("2D Array subBoardAt") { () => board.subBoardAt(4, 1) }
+      r mustEqual Set(1, 2, 3)
+
       board.subBoardAt(3, 3) mustEqual Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
       board.subBoardAt(9, 9) mustEqual Set.empty
 
@@ -101,7 +106,9 @@ class sudokuSpec extends BaseSpec {
     }
 
     "return the possibilities based on the input data" in {
-      board.possibilitiesAt(4, 1) mustEqual Set(4, 5, 6, 7, 8, 9)
+      val r = time("2DArray possibilitiesAt") { () => board.possibilitiesAt(4, 1) }
+      r mustEqual Set(4, 5, 6, 7, 8, 9)
+
       board.possibilitiesAt(3, 3) mustEqual Set(9)
       board.possibilitiesAt(9, 9) mustEqual Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
 
@@ -109,42 +116,6 @@ class sudokuSpec extends BaseSpec {
       board2.possibilitiesAt(4, 2) mustEqual Set(1, 2, 3, 5, 7, 8)
 
       solved.possibilitiesAt(3, 7) mustEqual Set(7)
-    }
-
-    "find the first unsolved point" in {
-      board.firstUnsolvedPoint mustEqual (4, 1)
-      board2.firstUnsolvedPoint mustEqual (2, 1)
-    }
-
-    "get values" in {
-      solved.point(9, 9) must beSome(5)
-      solved.point(1, 1) must beSome(2)
-      solved.point(9, 1) must beSome(4)
-      solved.point(1, 9) must beSome(3)
-      solved.point(4, 5) must beSome(4)
-      solved.point(5, 4) must beSome(9)
-      solved.point(6, 3) must beSome(5)
-      solved.point(3, 6) must beSome(8)
-    }
-
-    "set values" in {
-      val nb1 = solved.point(1, 9, Some(5))
-      nb1(8)(0) must beSome(5)
-      nb1.point(1, 9) must beSome(5)
-
-      val nb2 = solved.point(9, 1, Some(8))
-      nb2(0)(8) must beSome(8)
-      nb2.point(9, 1) must beSome(8)
-
-      val nb3 = solved.point(4, 5, Some(1))
-      nb3(4)(3) must beSome(1)
-      nb3.point(4, 5) must beSome(1)
-    }
-
-    "solve the board" in {
-      val PerformanceResult(r, t) = time { board2.solve }
-      println(s"Sudoku solver took $t s\n" + r.get.toPrettyString)
-      r must beSome
     }
   }
 }
