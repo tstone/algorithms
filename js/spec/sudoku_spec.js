@@ -52,6 +52,7 @@ describe("sudoku", function(){
     for (i = 0; i < 90000; ++i) { sudoku.possibilitiesFor(board, 4, 5); }
     var t3 = new Date().getMilliseconds();
 
+    console.log("\n\nPerf:\n");
     console.log("1k runs", (t1 - start) / 1000);
     console.log("10k runs", (t2 - start) / 1000);
     console.log("100k runs", (t3 - start) / 1000);
