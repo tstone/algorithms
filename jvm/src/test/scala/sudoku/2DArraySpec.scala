@@ -1,10 +1,11 @@
 package algorithms.sudoku
 
 import test.support.BaseSpec
-import Sudoku2DArray._
+import Sudoku2DSeq._
 
 
-class Sudoku2DArraySpec extends BaseSpec {
+
+class Sudoku2DSeqSpec extends BaseSpec {
 
   "GameBoard" should {
 
@@ -26,7 +27,7 @@ class Sudoku2DArraySpec extends BaseSpec {
      */
 
 
-    val board = Seq(
+    val board = Seq[Seq[Option[Int]]](
       Seq(Some(1), Some(2), Some(3), None, None, None, None, None, None),
       Seq(Some(4), Some(5), Some(6), Some(1), Some(2), Some(3), None, None, None),
       Seq(Some(7), Some(8), Some(9), None, None, None, None, None, None),
@@ -41,7 +42,7 @@ class Sudoku2DArraySpec extends BaseSpec {
     // An actual sudoku board I found out on the internet
     // http://news.nd.edu/assets/80986/sudoku300.jpg
 
-    val board2 = Seq(
+    val board2 = Seq[Seq[Option[Int]]](
       Seq(Some(8), None, None, Some(4), None, Some(6), None, None, Some(7)),
       Seq(None, None, None, None, None, None, Some(4), None, None),
       Seq(None, Some(1), None, None, None, None, Some(6), Some(5), None),
@@ -53,7 +54,7 @@ class Sudoku2DArraySpec extends BaseSpec {
       Seq(Some(3), None, None, Some(9), None, Some(2), None, None, Some(5))
     )
 
-    val solved = Seq(
+    val solved = Seq[Seq[Option[Int]]](
       Seq(Some(2), Some(9), Some(6), Some(3), Some(1), Some(8), Some(5), Some(7), Some(4)),
       Seq(Some(5), Some(8), Some(4), Some(9), Some(7), Some(2), Some(6), Some(1), Some(3)),
       Seq(Some(7), Some(1), Some(3), Some(6), Some(4), Some(5), Some(2), Some(8), Some(9)),
@@ -66,7 +67,7 @@ class Sudoku2DArraySpec extends BaseSpec {
     )
 
     "return the row set" in {
-      val r = time("2D Array row") { () => board2.row(6) }
+      val r = time("2D Seq row") { () => board2.row(6) }
       r mustEqual Set(1, 2, 3, 4, 8)
 
       board.row(9) mustEqual Set.empty
@@ -75,7 +76,7 @@ class Sudoku2DArraySpec extends BaseSpec {
     }
 
     "return the column set" in {
-      val r = time("2D Array col") { () => board.col(4) }
+      val r = time("2D Seq col") { () => board.col(4) }
       r mustEqual Set(1)
 
       board.col(1) mustEqual Set(1, 4, 7)
@@ -86,14 +87,8 @@ class Sudoku2DArraySpec extends BaseSpec {
       solved.col(2) mustEqual Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
     }
 
-    "return the sub board location" in {
-      board.whichSubBoard(4, 1) mustEqual (2, 1)
-      board.whichSubBoard(2, 3) mustEqual (1, 1)
-      board.whichSubBoard(5, 5) mustEqual (2, 2)
-    }
-
     "return the sub board set" in {
-      val r = time("2D Array subBoardAt") { () => board.subBoardAt(4, 1) }
+      val r = time("2D Seq subBoardAt") { () => board.subBoardAt(4, 1) }
       r mustEqual Set(1, 2, 3)
 
       board.subBoardAt(3, 3) mustEqual Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
@@ -106,7 +101,7 @@ class Sudoku2DArraySpec extends BaseSpec {
     }
 
     "return the possibilities based on the input data" in {
-      val r = time("2DArray possibilitiesAt") { () => board.possibilitiesAt(4, 1) }
+      val r = time("2DSeq possibilitiesAt") { () => board.possibilitiesAt(4, 1) }
       r mustEqual Set(4, 5, 6, 7, 8, 9)
 
       board.possibilitiesAt(3, 3) mustEqual Set(9)
@@ -117,5 +112,6 @@ class Sudoku2DArraySpec extends BaseSpec {
 
       solved.possibilitiesAt(3, 7) mustEqual Set(7)
     }
+
   }
 }
