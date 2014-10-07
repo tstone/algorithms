@@ -8,3 +8,4 @@ target
 .worksheet
 *.sc
 .idea
+.DS_Store
