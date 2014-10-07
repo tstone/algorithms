@@ -48,7 +48,7 @@
 (defn which-sub-board
   "Determine the sub-board based on a whole-board position"
   [x y]
-  ((math/floor (/ x 3)), (math/floor (/ y 3))))
+  [(math/floor (/ x 3)), (math/floor (/ y 3))])
 
 (defn sub-board
   "Get the sub-board at the given x/y"
