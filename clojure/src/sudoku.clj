@@ -63,11 +63,8 @@
     (identity-set
       (flatten cols))))
 
-
 (defn possibilities
   "Determine the possibilities for the given x/y"
   [board x y]
   (difference #{1 2 3 4 5 6 7 8 9}
     (union (row y) (column x) (sub-board x y))))
-
-(possibilities 2 1)
