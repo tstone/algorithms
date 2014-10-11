@@ -9,3 +9,6 @@ target
 *.sc
 .idea
 .DS_Store
+.lein-failures
+.nrepl-port
+
