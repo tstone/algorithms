@@ -15,7 +15,7 @@
 
 ;; Board Read Functions
 
-(defn pos
+(defn position
   "Get a specific position on the board"
   [board x y]
   (get-in board [x y]))
@@ -60,7 +60,7 @@
 ;; Example Board
 ;; (also used for repl)
 
-(def board [
+(def example-board [
   [ 1   2   3    nil nil nil   nil nil nil]
   [ 4   5   6     1   2   3    nil nil nil]
   [ 7   8   9    nil nil nil   nil nil nil]
