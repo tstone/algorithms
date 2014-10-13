@@ -1,7 +1,6 @@
-(ns sudoku)
-
-(require '[clojure.math.numeric-tower :as math])
-(require '[clojure.set :as set])
+(ns sudoku
+  (:use [clojure.math.numeric-tower :only [floor]])
+  (:use [clojure.set :only [difference]]))
 
 
 ;; Helper Functions
@@ -35,7 +34,7 @@
 (defn which-sub-board
   "Determine the sub-board based on a whole-board position"
   [x y]
-  [(int (math/floor (/ x 3))), (int (math/floor (/ y 3)))])
+  [(int (floor (/ x 3))), (int (floor (/ y 3)))])
 
 (defn sub-board
   "Get the sub-board at the given x/y"
@@ -53,7 +52,7 @@
 (defn possibilities
   "Determine the possibilities for the given x/y"
   [board x y]
-  (set/difference #{1 2 3 4 5 6 7 8 9}
+  (difference #{1 2 3 4 5 6 7 8 9}
     (row board y) (column board x) (sub-board board x y)))
 
 
