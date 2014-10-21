@@ -1,5 +1,4 @@
 (ns upc
-  (:use [clojure.string :only [split]])
   (:require [clojure.math.combinatorics :as combo]))
 
 
