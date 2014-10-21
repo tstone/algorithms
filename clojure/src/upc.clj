@@ -6,7 +6,7 @@
 ;; RULES
 ;; vector -> boolean
 
-(defn second-2-or-4?
+(defn second-is-2-or-4?
   "True if second digit is 2 or 4"
   [v]
   (let [second (get v 1)]
@@ -14,7 +14,7 @@
      (= second 2)
      (= second 4))))
 
-(defn last-larger-3rd?
+(defn last-larger-than-3rd?
   "True if last digit is larger than the 3rd digit"
   [v]
   (let [third (get v 2)]
@@ -53,8 +53,8 @@
 ;; EXAMPLE
 
 (generate
-  [second-2-or-4?
-   last-larger-3rd?
+  [second-is-2-or-4?
+   last-larger-than-3rd?
    hasnt-sequence-2-3?])
 
 
