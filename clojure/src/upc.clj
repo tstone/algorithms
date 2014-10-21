@@ -30,14 +30,14 @@
 
 (defn validate
   "True if all rules are true"
-  [val]
+  [val rules]
   (every? #(= %1 true)
     (map #(%1 val) rules)))
 
 (defn generate
   "Generates all possible values given a set of rules"
   [rules]
-  (filter validate
+  (filter #(validate %1 rules)
     (permutations [1 2 3 4 5])))
 
 
