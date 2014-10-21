@@ -1,5 +1,5 @@
 (ns upc
-  (:require [clojure.math.combinatorics :as combo]))
+  (:use [clojure.math.combinatorics :only [permutations]]))
 
 
 ;; RULES
@@ -38,7 +38,7 @@
   "Generates all possible values given a set of rules"
   [rules]
   (filter validate
-    (combo/permutations [1 2 3 4 5])))
+    (permutations [1 2 3 4 5])))
 
 
 ;; HELPERS
