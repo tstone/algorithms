@@ -1,6 +1,6 @@
 # Algorithms
 
-My tinkerings and implementations around Algorithms 4th edition.
+My tinkerings and implementations around stuff.
 
 ## Scala & Java
 
@@ -24,3 +24,23 @@ To run algorithms:
 $ cd js
 $ jasmine-node spec/
 ```
+
+## Julia
+
+Requirements:
+
+```shell
+$ cd julia
+$ julia
+$ julia> Pkg.resolve()
+```
+
+To run algorithms:
+
+```shell
+./runtests.sh
+```
+
+## Clojure
+
+Use Light Table (http://lighttable.com)
