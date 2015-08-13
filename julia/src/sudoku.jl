@@ -2,13 +2,8 @@ module Sudoku
 
 export rowset, colset, subboardset, possibilities
 
-function rowset(board::Array{Int,2}, rowindex::Int)
-  Set(board[rowindex, 1:end])
-end
-
-function colset(board::Array{Int,2}, colindex::Int)
-  Set(board[1:end, colindex])
-end
+rowset(board::Array{Int,2}, rowindex::Int) = Set(board[rowindex, 1:end])
+colset(board::Array{Int,2}, colindex::Int) = Set(board[1:end, colindex])
 
 function subboardset(board::Array{Int,2}, x::Int, y::Int)
   xmin = (floor(x/3) * 3) + 1
